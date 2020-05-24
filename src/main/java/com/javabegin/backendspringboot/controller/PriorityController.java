@@ -2,9 +2,9 @@ package com.javabegin.backendspringboot.controller;
 
 import com.javabegin.backendspringboot.entity.Priority;
 import com.javabegin.backendspringboot.repository.PriorityRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +21,16 @@ public class PriorityController {
     @GetMapping("/test")
     public List<Priority> test() {
         return priorityRepository.findAll();
+    }
+
+    @PostMapping("add")
+    public ResponseEntity<Priority> add(@RequestBody Priority priority) {
+        if (priority.getId() != null && priority.getId() != 0) {
+            return new ResponseEntity("redundant param: id MUST be null", HttpStatus.NOT_ACCEPTABLE);
+        }
+        if (priority.getTitle() != null && priority.getTitle().trim().length() == 0) {
+            return new ResponseEntity("missed param: title", HttpStatus.NOT_ACCEPTABLE);
+        }
+        return ResponseEntity.ok(priorityRepository.save(priority));
     }
 }
