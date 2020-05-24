@@ -1,17 +1,18 @@
 package com.javabegin.backendspringboot.entity;
 
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
 @Setter
 @EqualsAndHashCode
+//@ApiModel(value = "class category")
 public class Category {
     private Long id;
     private String title;
@@ -27,6 +28,7 @@ public class Category {
 
     @Basic
     @Column(name = "title")
+//    @ApiModelProperty(value = "name category",example = "Семья")
     public String getTitle() {
         return title;
     }

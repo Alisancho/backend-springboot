@@ -1,17 +1,19 @@
 package com.javabegin.backendspringboot.controller;
 
 import com.javabegin.backendspringboot.entity.Category;
-import com.javabegin.backendspringboot.entity.Priority;
 import com.javabegin.backendspringboot.repository.CategoryRepository;
+//import io.swagger.annotations.Api;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/category")
+//@Api(value = "Category resources")
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
@@ -57,5 +59,17 @@ public class CategoryController {
             return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
         }
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Category> findById(@PathVariable Long id) {
+        Category category = null;
+        try {
+            category = categoryRepository.findById(id).get();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
+        }
+        return ResponseEntity.ok(category);
     }
 }

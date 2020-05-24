@@ -16,9 +16,17 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        url "http://oss.jfrog.org/artifactory/oss-snapshot-local"
+    }
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/io.springfox/springfox-data-rest
+    compile group: 'io.springfox', name: 'springfox-data-rest', version: '3.0.0-SNAPSHOT'
+    compile group: 'io.springfox', name: 'springfox-bean-validators', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0-SNAPSHOT'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0-SNAPSHOT'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-web'
