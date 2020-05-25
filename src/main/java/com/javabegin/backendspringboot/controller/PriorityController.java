@@ -26,7 +26,7 @@ public class PriorityController {
     @GetMapping("/all")
     @ApiOperation(value = "show all priority")
     public List<Priority> findAll() {
-        return priorityRepository.findAll();
+        return priorityRepository.findAllByOrderByIdAsc();
     }
 
     @PostMapping("/add")
