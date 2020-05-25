@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/category")
-@Api(tags = "CategoryController", description = "CategoryController")
+@Api(tags = "Category", description = "CategoryController")
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;

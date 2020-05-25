@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@Api(tags = "StatController", description = "PriorityController")
+@Api(tags = "Stat", description = "PriorityController")
 public class StatController {
 
     private final StatRepository statRepository;

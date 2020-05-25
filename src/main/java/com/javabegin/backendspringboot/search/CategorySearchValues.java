@@ -1,6 +1,5 @@
 package com.javabegin.backendspringboot.search;
 
-
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

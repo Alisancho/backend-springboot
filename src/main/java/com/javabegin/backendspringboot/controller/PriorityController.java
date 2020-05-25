@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/priority")
-@Api(tags = "PriorityController", description = "PriorityController")
+@Api(tags = "Priority", description = "PriorityController")
 public class PriorityController {
 
     private final PriorityRepository priorityRepository;
