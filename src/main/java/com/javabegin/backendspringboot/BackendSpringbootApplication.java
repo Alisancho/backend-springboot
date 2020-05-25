@@ -27,6 +27,4 @@ public class BackendSpringbootApplication {
                 .paths(PathSelectors.any())
                 .build();
     }
-
-
 }

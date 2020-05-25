@@ -2,7 +2,7 @@ package com.javabegin.backendspringboot.controller;
 
 import com.javabegin.backendspringboot.entity.Category;
 import com.javabegin.backendspringboot.repository.CategoryRepository;
-//import io.swagger.annotations.Api;
+import io.swagger.annotations.Api;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/category")
-//@Api(value = "Category resources")
+@Api(value = "Category resources")
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
@@ -22,8 +22,8 @@ public class CategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("/test")
-    public List<Category> test() {
+    @GetMapping("/all")
+    public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
@@ -48,7 +48,6 @@ public class CategoryController {
         }
         return ResponseEntity.ok(categoryRepository.save(category));
     }
-
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable Long id) {

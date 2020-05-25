@@ -2,8 +2,8 @@ package com.javabegin.backendspringboot.controller;
 
 import com.javabegin.backendspringboot.entity.Priority;
 import com.javabegin.backendspringboot.repository.PriorityRepository;
-//import io.swagger.annotations.Api;
-//import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/priority")
-//@Api(value = "Priority resources", description = "crud operations")
+@Api(value = "Priority resources", description = "crud operations")
 public class PriorityController {
 
     private final PriorityRepository priorityRepository;
@@ -23,14 +23,14 @@ public class PriorityController {
         this.priorityRepository = priorityRepository;
     }
 
-    @GetMapping("/test")
-//    @ApiOperation(value = "show all priority")
-    public List<Priority> test() {
+    @GetMapping("/all")
+    @ApiOperation(value = "show all priority")
+    public List<Priority> findAll() {
         return priorityRepository.findAll();
     }
 
     @PostMapping("/add")
-//    @ApiOperation(value = "add priority")
+    @ApiOperation(value = "add priority")
     public ResponseEntity<Priority> add(@RequestBody Priority priority) {
         if (priority.getId() != null && priority.getId() != 0) {
             return new ResponseEntity("redundant param: id MUST be null", HttpStatus.NOT_ACCEPTABLE);
@@ -42,7 +42,7 @@ public class PriorityController {
     }
 
     @PutMapping("put")
-//    @ApiOperation(value = "update priority",response = Priority.class)
+    @ApiOperation(value = "update priority", response = Priority.class)
     public ResponseEntity<Priority> update(@RequestBody Priority priority) {
         if (priority.getId() != null || priority.getId() == 0) {
             return new ResponseEntity("redundant param: id MUST be null", HttpStatus.NOT_ACCEPTABLE);
@@ -57,7 +57,7 @@ public class PriorityController {
     }
 
     @DeleteMapping("/delete/{id}")
-//    @ApiOperation(value = "delete priority",response = ResponseEntity.class)
+    @ApiOperation(value = "delete priority", response = ResponseEntity.class)
     public ResponseEntity delete(@PathVariable Long id) {
         try {
             priorityRepository.deleteById(id);
@@ -69,7 +69,7 @@ public class PriorityController {
     }
 
     @GetMapping("/id/{id}")
-//    @ApiOperation(value = "select on id priority",response = Priority.class)
+    @ApiOperation(value = "select on id priority", response = Priority.class)
     public ResponseEntity<Priority> findById(@PathVariable Long id) {
         Priority priority = null;
         try {
