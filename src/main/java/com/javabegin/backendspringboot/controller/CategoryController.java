@@ -1,7 +1,6 @@
 package com.javabegin.backendspringboot.controller;
 
 import com.javabegin.backendspringboot.entity.Category;
-import com.javabegin.backendspringboot.entity.Priority;
 import com.javabegin.backendspringboot.repository.CategoryRepository;
 import com.javabegin.backendspringboot.search.CategorySearchValues;
 import io.swagger.annotations.Api;
