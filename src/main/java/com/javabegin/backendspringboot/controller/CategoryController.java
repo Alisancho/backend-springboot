@@ -62,13 +62,11 @@ public class CategoryController {
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
-        Category category = null;
         try {
-            category = categoryRepository.findById(id).get();
+            return ResponseEntity.ok(categoryRepository.findById(id).get());
         } catch (NoSuchElementException e) {
             e.printStackTrace();
             return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
         }
-        return ResponseEntity.ok(category);
     }
 }

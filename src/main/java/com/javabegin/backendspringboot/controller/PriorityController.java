@@ -71,14 +71,11 @@ public class PriorityController {
     @GetMapping("/id/{id}")
     @ApiOperation(value = "select on id priority", response = Priority.class)
     public ResponseEntity<Priority> findById(@PathVariable Long id) {
-        Priority priority = null;
         try {
-            priority = priorityRepository.findById(id).get();
+            return ResponseEntity.ok(priorityRepository.findById(id).get());
         } catch (NoSuchElementException e) {
             e.printStackTrace();
             return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
         }
-        return ResponseEntity.ok(priority);
     }
-
 }
