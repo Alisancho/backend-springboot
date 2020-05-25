@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/priority")
-@Api(value = "Priority resources", description = "crud operations")
+@Api(tags = "PriorityController", description = "PriorityController")
 public class PriorityController {
 
     private final PriorityRepository priorityRepository;
@@ -24,13 +24,13 @@ public class PriorityController {
     }
 
     @GetMapping("/all")
-    @ApiOperation(value = "show all priority")
+    @ApiOperation(value = "Получить список всех значений из базы")
     public List<Priority> findAll() {
         return priorityRepository.findAllByOrderByIdAsc();
     }
 
     @PostMapping("/add")
-    @ApiOperation(value = "add priority")
+    @ApiOperation(value = "Добавить данные")
     public ResponseEntity<Priority> add(@RequestBody Priority priority) {
         if (priority.getId() != null && priority.getId() != 0) {
             return new ResponseEntity("redundant param: id MUST be null", HttpStatus.NOT_ACCEPTABLE);
@@ -42,7 +42,7 @@ public class PriorityController {
     }
 
     @PutMapping("put")
-    @ApiOperation(value = "update priority", response = Priority.class)
+    @ApiOperation(value = "Обновить данные", response = Priority.class)
     public ResponseEntity<Priority> update(@RequestBody Priority priority) {
         if (priority.getId() != null || priority.getId() == 0) {
             return new ResponseEntity("redundant param: id MUST be null", HttpStatus.NOT_ACCEPTABLE);
@@ -57,7 +57,7 @@ public class PriorityController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @ApiOperation(value = "delete priority", response = ResponseEntity.class)
+    @ApiOperation(value = "Удалить данные", response = ResponseEntity.class)
     public ResponseEntity delete(@PathVariable Long id) {
         try {
             priorityRepository.deleteById(id);
@@ -69,7 +69,7 @@ public class PriorityController {
     }
 
     @GetMapping("/id/{id}")
-    @ApiOperation(value = "select on id priority", response = Priority.class)
+    @ApiOperation(value = "Получить значение по ID", response = Priority.class)
     public ResponseEntity<Priority> findById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(priorityRepository.findById(id).get());
