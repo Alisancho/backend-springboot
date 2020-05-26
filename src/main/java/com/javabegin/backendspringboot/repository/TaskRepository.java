@@ -25,7 +25,4 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
                             @Param("categoryId") Long categoryId,
                             Pageable pageable
     );
-
-
-
 }
