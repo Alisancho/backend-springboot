@@ -1,7 +1,10 @@
 package com.javabegin.backendspringboot.controller;
 
+import com.javabegin.backendspringboot.entity.Category;
 import com.javabegin.backendspringboot.entity.Priority;
 import com.javabegin.backendspringboot.repository.PriorityRepository;
+import com.javabegin.backendspringboot.search.CategorySearchValues;
+import com.javabegin.backendspringboot.search.PrioritySearchValues;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -77,5 +80,11 @@ public class PriorityController {
             e.printStackTrace();
             return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
         }
+    }
+
+    @PostMapping("/search")
+    @ApiOperation(value = "Поиск по любым параметрам",response = PrioritySearchValues.class)
+    public ResponseEntity<List<Priority>> search(PrioritySearchValues categorySearchValues) {
+        return ResponseEntity.ok(priorityRepository.findByTitle(categorySearchValues.getText()));
     }
 }
